@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Button from "../button/button";
+import React, { useState } from "react";
 
 export const SearchBox = ({ requestSearch }) => {
   const [query, setQuery] = useState("");
   const searchClick = () => {
+    console.log("query", query);
     if (query) {
       requestSearch(query);
     }
@@ -12,10 +12,6 @@ export const SearchBox = ({ requestSearch }) => {
   const updateQuery = e => {
     setQuery(e.target.value);
   };
-
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
 
   return (
     <div data-testid="searchBox">
@@ -27,8 +23,13 @@ export const SearchBox = ({ requestSearch }) => {
         onChange={updateQuery}
         data-testid="searchInput"
       />
-
-      <Button label="search" onclick={searchClick} />
+      <button
+        data-testid="buttonDemo"
+        className="button-style"
+        onClick={searchClick}
+      >
+        submit
+      </button>
     </div>
   );
 };
